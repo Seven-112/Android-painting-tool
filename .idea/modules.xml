@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HousePainter.iml" filepath="$PROJECT_DIR$/HousePainter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/modules/app/HousePainter-app.iml" filepath="$PROJECT_DIR$/../.idea/modules/app/HousePainter-app.iml" group="HousePainter/app" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/modules/Projects-HousePainter.iml" filepath="$PROJECT_DIR$/../.idea/modules/Projects-HousePainter.iml" group="HousePainter" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>

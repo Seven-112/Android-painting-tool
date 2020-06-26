@@ -1,6 +1,7 @@
 package com.rmal30.housepainter;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.provider.MediaStore;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         iBtn.setBackgroundColor(initial);
         lBtn.setBackgroundColor(lightColor);
         pBtn.setBackgroundColor(fillColor);
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -104,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PHOTO_CODE);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 500);
     }
 
     public void colorRegion(int x, int y){
@@ -515,6 +520,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent imageRet
                 loadImage();
             }
             break;
+        case 500:
+            if (resultCode == RESULT_OK) {
+                Log.v("permission-->", "granted");
+            }
         default:
     }
 }
@@ -530,6 +539,9 @@ public void loadImage(){
             runOnUiThread(new Runnable(){
                 public void run(){
                     imageView.setImageBitmap(imageBitmap);
+                    if (imageBitmap.getWidth() > imageBitmap.getHeight()) {
+                        imageView.setRotation(imageView.getRotation() + 90);
+                    }
                     progressBar.setVisibility(View.GONE);
                 }
             });
